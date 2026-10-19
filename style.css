@@ -1,0 +1,378 @@
+:root {
+    --main-dark: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --gold: #d4af37;
+    --text-white: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+
+body { background-color: var(--main-dark); color: var(--text-white); line-height: 1.6; }
+
+/* القائمة */
+.navbar {
+    position: fixed;        /* يخلي الناف بار ثابت فوق */
+    top: 0;
+    left: 0;
+    width: 100%;           /* يفرش بعرض الشاشة كلها */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;      /* مسافة داخلية عشان اللوجو ميبقاش لازق في الحرف */
+    background: #000; /* خلفية سوداء بلمسة شفافية */
+    backdrop-filter: blur(10px);   /* تأثير زجاجي فخم */
+    border-bottom: 2px solid var(--gold); /* خط ذهبي رفيع من تحت */
+    z-index: 1000;         /* يضمن إنه يفضل فوق أي صورة أو نص */
+    box-sizing: border-box; /* مهم جداً عشان العرض يفضل 100% بالظبط */
+}
+
+/* عشان المحتوى اللي تحت الناف بار ميتداراش وراه */
+body {
+    padding-top: 80px; /* نفس ارتفاع الناف بار تقريباً */
+}
+@media (max-width: 768px) {
+    /* 1. جعل الناف بار يفرش 100% ويشيل أي مسافات جانبية */
+    .navbar {
+        flex-direction: column; 
+        padding: 5px 0 !important; /* تقليل الارتفاع */
+        width: 100% !important;
+        left: 0;
+        right: 0;
+    }
+
+    /* 2. اللوجو في النص وصغير شوية */
+    .logo {
+        font-size: 18px;
+        margin-bottom: 5px;
+        justify-content: center;
+    }
+
+    /* 3. المنيو: أهم جزء لجعلهم كلهم جنب بعض */
+    .menu {
+        display: flex;
+        flex-direction: row !important; /* إجبارهم يكونوا سطر واحد */
+        justify-content: space-evenly;  /* توزيع متساوي جداً */
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 2px; /* أقل مسافة ممكنة بين الكلمات */
+    }
+
+    /* 4. الروابط: تصغير المساحة اللي حوالين كل كلمة */
+    .menu a {
+        font-size: 10px;        /* حجم خط صغير عشان يكفي الـ 6 أقسام */
+        padding: 5px 2px !important; 
+        white-space: nowrap;    /* نوت بوك تفضل جنب بعضها */
+        margin: 0 !important;
+        flex: 1;                /* كل كلمة تاخد مساحة متساوية بالظبط */
+        text-align: center;
+    }
+}
+
+.logo { font-size: 28px; font-weight: bold; letter-spacing: 2px; }
+.logo  { color:burlywood; font-style:italic;}
+/* تنسيق منطقة اللوجو لتكون العناصر بجانب بعضها */
+.logo {
+    display: flex;
+    align-items: center; /* لجعل النص والصور على خط واحد */
+    gap: 10px;           /* مسافة بسيطة بين الكلمة والصور */
+}
+
+/* التحكم في مقاس الصور */
+.logo img {
+    height: 70px;        /* يمكنك تغيير الرقم حسب الحجم المناسب لك */
+    width: auto;
+}
+
+.menu a { color: white; text-decoration: none; margin-left: 20px; font-size: 14px; transition: 0.3s; }
+.menu a:hover { color: var(--gold); }
+
+/* الهيرو */
+.hero {
+    height: 60vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1586075010633-2470bb205e6a?q=80&w=1500');
+    background-size: cover; background-position: center;
+}
+
+.btn-main {
+    margin-top: 20px; display: inline-block; padding: 12px 30px;
+    background: var(--gold); color: black; text-decoration: none;
+    border-radius: 5px; font-weight: bold; transition: 0.3s;
+}
+
+/* الأقسام */
+.categories-section { padding: 50px 5%; text-align: center; }
+.section-title { margin-bottom: 40px; color: var(--gold); }
+
+.category-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 20px;
+}
+
+.cat-card {
+    background: var(--card-bg); padding: 40px 20px; border-radius: 15px;
+    text-decoration: none; color: white; border: 1px solid #333; transition: 0.3s; 
+}
+.accessory-title {
+    font-size: .9rem;
+    margin-top: 10px;
+    font-weight: bolder;
+}
+.cat-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+.cat-icon { font-size: 50px; margin-bottom: 15px; }
+
+/* الواتساب */
+.whatsapp-float {
+    position: fixed; bottom: 20px; left: 20px; background: #25d366;
+    display: flex; align-items: center; padding: 10px 20px; border-radius: 50px;
+    text-decoration: none; color: white; font-weight: bold; gap: 10px; z-index: 2000;
+}
+.whatsapp-float img { width: 30px; }
+/* تنسيقات صفحات المنتجات */
+.page-header {
+    padding: 80px 20px;
+    text-align: center;
+    background: #0f0f0f;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 50px 8%;
+}
+
+.product-card {
+    background: #141414;
+    border: 1px solid #222;
+    transition: 0.4s;
+}
+/* تجعل الكارد يأخذ السطر بالكامل في الشبكة */
+.full-width-card {
+    grid-column: 1 / -1; 
+    justify-self: center; /* تضعه في منتصف السطر */
+    width: 100%;
+    max-width: 350px;    /* نحدد عرضه لكي لا يتمدد بشكل مبالغ فيه */
+}
+
+/* لضمان تناسق المحتوى داخله */
+.full-width-card img {
+    width: 100%;        /* تجعل الصورة تأخذ عرض المربع بالضبط */
+    height: 300px;      /* حدد الطول الذي تريده للمربع */
+}
+
+.product-img-placeholder {
+    height: 300px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+}
+
+.product-info {
+    padding: 25px;
+    text-align: right;
+}
+
+.product-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.price {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.buy-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    background: #d4af37; /* لمسة ذهبية خفيفة عند الحركة فقط */
+    .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+}
+/* تنسيقات الفوتر */
+.main-footer {
+    background: #000;
+    border-top: 2px solid var(--gold);
+    padding: 50px 8% 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer-section p {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #888;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--gold);
+    padding-right: 5px; /* حركة بسيطة عند التمرير */
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #222;
+    color: #555;
+    font-size: 0.8rem;
+}
+/* تأثير دخول الصفحة */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.product-card {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* لجعل الصور تظهر بشكل دائري بسيط في المجات */
+.mugs-page .product-img-placeholder {
+    border-radius: 50% 50% 15px 15px;
+}
+.product-card img {
+    width: 100%;        /* تجعل الصورة تأخذ عرض المربع بالضبط */
+    height: 300px;      /* حدد الطول الذي تريده للمربع */
+    object-fit: cover;  /* أهم سطر: يخلي الصورة تملأ المربع بدون ما تتمط أو تبوظ */
+    display: block;     /* بيشيل أي فراغات تحت الصورة */
+}
+.page-header h1 {
+    color: var(--gold);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* توهج ذهبي خفيف */
+    font-weight: bold;
+}
+/* تنسيقات إضافية خاصة بصفحة الأقلام والمنتجات المميزة */
+
+/* تمييز كارت "عرض الشركات" أو أي كارت مميز */
+.product-card[style*="border: 2px solid var(--gold)"] {
+    transform: scale(1.02); /* يجعله أكبر قليلاً بشكل تلقائي */
+    background: linear-gradient(145deg, #1a1a1a, #252525);
+}
+
+/* تحسين شكل أيقونات الـ Placeholder لو لم تضع صوراً بعد */
+.product-img-placeholder {
+    font-size: 1.2rem;
+    color: var(--gold);
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #333;
+}
+
+/* تنسيق الهيدر في الصفحات الفرعية */
+.page-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, #000, #0f0f0f);
+}
+
+.page-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gold);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.product-card-11 {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.product-card-11 img {
+ width: 100%;        /* تجعل الصورة تأخذ عرض المربع بالضبط */
+ height: 70%;      /* حدد الطول الذي تريده للمربع */
+ object-fit: cover;  /* أهم سطر: يخلي الصورة تملأ المربع بدون ما تتمط أو تبوظ */
+ display: flex;     /* بيشيل أي فراغات تحت الصورة */
+ justify-content: center;
+ text-align: center;
+}
+.footer-section-11 {
+    display: flex;
+  gap: 10px; /* دي بتسيب مسافة ثابتة بين أي رقمين أو عنصرين جوه */
+}
+/* تنسيق أيقونات السوشيال ميديا في الفوتر */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+    color: white; /* لون الأيقونة العادي */
+    font-size: 20px;
+    background: rgba(212, 175, 55, 0.1); /* خلفية ذهبية شفافة جداً */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+
+.social-icons a:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+    background: transparent;
+}
+.social-icons a  {
+    text-decoration: none;
+}
